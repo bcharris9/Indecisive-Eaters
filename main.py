@@ -23,12 +23,11 @@ url = 'https://api.yelp.com/v3/businesses/search'
 # Parameters for the API request
 params = {
     'term': 'restaurants',
-    #'location': 'New York City',
     'latitude': latitude,
     'longitude': longitude,
     #'categories': '',
     'radius': '5000',
-    'limit': number_of_restaraunts,
+    'limit': number_of_restaraunts+10,
     'open_now' : 'true'
 }
 
@@ -44,8 +43,49 @@ businesses = data['businesses']
 
 # Create a DataFrame from the business data
 df = pd.DataFrame(businesses)
+#print("Original DataFrame :")
+#print(df)
+ 
+# shuffle the DataFrame rows
+df = df.sample(frac=1).reset_index(drop=True)
+ 
+# print the shuffled DataFrame
+#print("\nShuffled DataFrame:")
+#print(df)
 
-# Display the DataFrame
+# Logic to initialize before loop
+print(f"This or That?")
+print(f"{df.at[0, 'name']}      {df.at[1, 'name']}")
+user_input = str(input())
+if user_input == "This":
+    pos = 0
+elif user_input == "That":
+    pos = 1
 
-for i in range (number_of_restaraunts):
-    print(df.at[i, 'name'])
+# Logic to display which restaraunt and take in use input
+for i in range (2, number_of_restaraunts):
+    if user_input == "This":
+        print(f"This or That?")
+        print(f"{df.at[pos, 'name']}    {df.at[i, 'name']}")
+        user_input = str(input())
+        if user_input == "This": 
+            pos = pos
+        else:
+            pos =  i
+
+    elif user_input == "That":
+        print(f"This or That?")
+        print(f"{df.at[i, 'name']}      {df.at[pos, 'name']}")
+        user_input = str(input())
+        if user_input == "This": 
+            pos = i
+        else:
+            pos =  pos
+
+print(f"You have chosen {df.at[pos, 'name']}!")
+    
+
+    
+    
+
+
