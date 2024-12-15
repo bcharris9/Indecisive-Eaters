@@ -7,11 +7,29 @@ def get_current_location():
     return g.latlng
 
 latitude, longitude = get_current_location()
-print("Latitude:", latitude)
-print("Longitude:", longitude)
+#print("Latitude:", latitude)
+#print("Longitude:", longitude)
 
-#amount of restaraunts to be gathered
-number_of_restaraunts = 5
+#Vaild number of restaurants
+print("How many restaurants do you want to choose from? Between 5 and 50")
+number_of_restaurants = int(input())
+if number_of_restaurants < 5:
+    number_of_restaurants = 5
+    limit = 10
+elif number_of_restaurants > 50:
+    number_of_restaurants = 50
+    limit = 50
+elif number_of_restaurants > 45:
+    limit = 50
+else:
+    limit = number_of_restaurants + 5
+
+# Prevent an AREA_TOO_LARGE error 
+print("How many miles are you willing to drive? Limit 25 miles.")
+radius = int(input() * 1609)
+if radius > 40000:
+    radius = 40000
+
 
 # Replace 'YOUR_API_KEY' with your actual Yelp API key as a string
 API_KEY = 'v1JO42CoSqmHEt7Pc-_E2NKdMOKqrNCXzeN90AgBbPyG8pci5NRNLP9VPtc-83zRWOMJRMDHodKW-HoOJBoXh9sapAGpEJcCR3hrMfDGR_3pacWRMardVn-DgdVdZ3Yx' # should look something like 'zwk_38920294dk38_292049SPLEKZHEJ3928Hksj3kd' except longer
@@ -27,7 +45,7 @@ params = {
     'longitude': longitude,
     #'categories': '',
     'radius': '5000',
-    'limit': number_of_restaraunts+10,
+    'limit': limit,
     'open_now' : 'true'
 }
 
@@ -43,8 +61,8 @@ businesses = data['businesses']
 
 # Create a DataFrame from the business data
 df = pd.DataFrame(businesses)
-#print("Original DataFrame :")
-#print(df)
+print("Original DataFrame :")
+print(df)
  
 # shuffle the DataFrame rows
 df = df.sample(frac=1).reset_index(drop=True)
@@ -63,7 +81,7 @@ elif user_input == "That":
     pos = 1
 
 # Logic to display which restaraunt and take in use input
-for i in range (2, number_of_restaraunts):
+for i in range (2, number_of_restaurants):
     if user_input == "This":
         print(f"This or That?")
         print(f"{df.at[pos, 'name']}    {df.at[i, 'name']}")
