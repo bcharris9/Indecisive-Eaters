@@ -47,8 +47,8 @@ params = {
     'term': 'restaurants',
     'latitude': latitude,
     'longitude': longitude,
-    'categories': '',
-    'radius': '5000',
+    #'categories': '',
+    'radius': radius,
     'limit': limit,
     'open_now' : 'true',
     'price' : price
