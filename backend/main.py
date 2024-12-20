@@ -10,7 +10,7 @@ def get_current_location():
 # Get location of the machine
 latitude, longitude = get_current_location()
 
-# Vaild number of restaurants
+# Valid number of restaurants
 number_of_restaurants = int(input("How many restaurants do you want to choose from? Between 5 and 50:   "))
 if number_of_restaurants < 5:
     number_of_restaurants = 5
@@ -59,6 +59,7 @@ params = {
 
 # Make the request to the Yelp API
 response = requests.get(url, headers=HEADERS, params=params)
+print(response.text)
 
 # Parse the JSON response data
 data = response.json()
@@ -86,7 +87,6 @@ elif user_input == "That":
 # Logic to display which restaraunt and take in use input
 # TODO Replace user_input with clicking on correct icon
 for i in range (2, number_of_restaurants):
-    print(i)
     if user_input == "This":
         user_input = str(input(f"{df.at[pos, 'name']}    {df.at[i, 'name']}\nThis or That:   "))
         if user_input == "This": 
