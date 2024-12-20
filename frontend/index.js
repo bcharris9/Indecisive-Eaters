@@ -1,3 +1,4 @@
+//import { restaurants, save_restaurants } from "./utils.js";
 let restaurants = []
 
 async function getLocation() {
@@ -70,6 +71,9 @@ document.getElementById('user-input').addEventListener('submit', async function(
     }
 
     restaurants = await getYelpData(params);
+    //save_restaurants(restaurants);
     
+    console.log(restaurants);
+    //window.location.href="thisthat.html";
   }
 });

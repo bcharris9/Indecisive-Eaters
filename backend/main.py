@@ -32,7 +32,7 @@ price = int(input("How much are you willing to spend on a scale 1-4:    "))
 if price < 1:
     price = 1
 elif price > 4:
-    price = 3
+    price = 4
 
 
 # Replace 'YOUR_API_KEY' with your actual Yelp API key as a string
