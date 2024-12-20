@@ -1,6 +1,6 @@
-//import { restaurants, save_restaurants } from "./utils.js";
-let restaurants = []
+import { edit_restaurants } from "./utils.js";
 
+//function to retrieve user location data from browser
 async function getLocation() {
   return new Promise((resolve, reject) => {
     if (navigator.geolocation) {
@@ -20,6 +20,7 @@ async function getLocation() {
   });
 }
 
+//function to retrieve restaurants from yelp API
 async function getYelpData(params) {
 
   try {
@@ -29,7 +30,7 @@ async function getYelpData(params) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(params)
-    })
+    }); //end fetch
 
     return response.json();
   }
@@ -45,9 +46,9 @@ document.getElementById('user-input').addEventListener('submit', async function(
   //validate form input
   const formData = new FormData(event.target);
 
-  if (!formData.has('num-restaurants') || !formData.has('num-miles') || (
-    !formData.has('cost-1') && !formData.has('cost-2') && !formData.has('cost-3') && !formData.has('cost-4')
-  )) {
+  if (!formData.has('num-restaurants') || !formData.has('num-miles') || 
+  (!formData.has('cost-1') && !formData.has('cost-2') && !formData.has('cost-3') && !formData.has('cost-4'))) 
+  {
     console.log("Error");
   }
   else {
@@ -60,20 +61,20 @@ document.getElementById('user-input').addEventListener('submit', async function(
       }
     }
 
-    params = {
+    const params = {
       term: 'restaurants',
       latitude: location.latitude, 
       longitude: location.longitude,
-      radius: (formData.get('num-miles')*1609),
+      radius: formData.get('num-miles')*1609,
       limit: formData.get('num-restaurants'), //calc meters in mile
       open_now: true,
       price: prices
     }
 
-    restaurants = await getYelpData(params);
-    //save_restaurants(restaurants);
-    
-    console.log(restaurants);
-    //window.location.href="thisthat.html";
+    const new_restaurants = await getYelpData(params);
+    edit_restaurants(new_restaurants);
+
+    //switch pages
+    window.location.href="thisthat.html";
   }
 });
