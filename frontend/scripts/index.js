@@ -76,8 +76,8 @@ document.getElementById('user-input').addEventListener('submit', async function(
   }
   const params = {
       term: 'restaurants',
-      latitude: location.latitude, //location.latitude
-      longitude: location.longitude, //location.latitude,
+      latitude: 32.863182, //location.latitude,
+      longitude: -96.927477, //location.longitude,
       radius: radius,
       limit: numRestaurants,
       open_now: true,
