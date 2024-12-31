@@ -39,42 +39,70 @@ async function getYelpData(params) {
   }
 }
 
-//Event listener on form submission button
 document.getElementById('user-input').addEventListener('submit', async function(event) {
   event.preventDefault(); // Prevent default form submission
 
-  //validate form input
+  // Validate form input
   const formData = new FormData(event.target);
+  const numRestaurants = parseInt(formData.get('num-restaurants'), 10);
+  const numMiles = parseFloat(formData.get('num-miles'));
 
-  if (!formData.has('num-restaurants') || !formData.has('num-miles') || 
-  (!formData.has('cost-1') && !formData.has('cost-2') && !formData.has('cost-3') && !formData.has('cost-4'))) 
-  {
-    console.log("Error");
+  if (isNaN(numRestaurants) || isNaN(numMiles) || numRestaurants <= 0 || numMiles <= 0 || 
+      (!formData.has('cost-1') && !formData.has('cost-2') && !formData.has('cost-3') && !formData.has('cost-4'))) {
+      alert("Please fill out all required fields with valid input.");
+      return;
   }
-  else {
-    const location = await getLocation();
 
-    let prices = []
-    for (let i = 1; i <= 4; i++) {
+  let location;
+  try {
+      location = await getLocation();
+  } catch (error) {
+      console.error("Failed to retrieve location:", error);
+      alert("Unable to retrieve location. Please enable location services and try again.");
+      return;
+  }
+
+  const prices = [];
+  for (let i = 1; i <= 4; i++) {
       if (formData.has(`cost-${i}`)) {
-        prices.push(formData.get(`cost-${i}`))
+          prices.push(formData.get(`cost-${i}`));
       }
-    }
+  }
 
-    const params = {
+  const METERS_IN_MILE = 1609;
+  let radius = numMiles * METERS_IN_MILE;
+  if (radius > 40000) {
+    radius = 40000;
+  }
+  const params = {
       term: 'restaurants',
-      latitude: location.latitude, 
-      longitude: location.longitude,
-      radius: formData.get('num-miles')*1609,
-      limit: formData.get('num-restaurants'), //calc meters in mile
+      latitude: location.latitude, //location.latitude
+      longitude: location.longitude, //location.latitude,
+      radius: radius,
+      limit: numRestaurants,
       open_now: true,
-      price: prices
-    }
+      price: prices.join(','),
+  };
 
-    const new_restaurants = await getYelpData(params);
-    edit_restaurants(new_restaurants);
+  try {
+      const new_restaurants = await getYelpData(params);
+      
+      //console.log(new_restaurants);
+      
+      if (!new_restaurants || new_restaurants.length === 0) {
+          alert("No restaurants found. Please adjust your search criteria and try again.");
+          return;
+      }
+      console.log(new_restaurants);
 
-    //switch pages
-    window.location.href="thisthat.html";
+      // Save restaurants to sessionStorage
+      sessionStorage.setItem("restaurants", JSON.stringify(new_restaurants));
+      //edit_restaurants(new_restaurants);
+      console.log(window.sessionStorage.getItem("restaurants"));
+
+      // Switch pages
+      window.location.href = "thisthat.html";
+  } catch (error) {
+      console.error("Error during form submission:", error);
   }
 });
