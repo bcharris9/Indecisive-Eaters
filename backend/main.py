@@ -50,7 +50,7 @@ params = {
     #'categories': '',
     'radius': radius,
     'limit': limit,
-    'open_now' : 'true',
+    'open_now' : 'false',
     'price' : price
 }
 

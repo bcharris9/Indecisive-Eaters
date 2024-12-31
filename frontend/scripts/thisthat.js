@@ -1,7 +1,27 @@
-import { restaurants, edit_restaurants } from "./utils.js";
+//import { restaurants, edit_restaurants, save_restaurants } from "./utils.js";
+var storedArray = JSON.parse(sessionStorage.getItem("restaurants"));
 
-save_restaurants(shuffle(restaurants));
-console.log(restaurants);
+console.log(storedArray[0]);
+
+let currentIndex = storedArray.length;
+  
+    // While there remain elements to shuffle...
+    while (currentIndex != 0) {
+  
+      // Pick a remaining element...
+      let randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+  
+      // And swap it with the current element.
+      [storedArray[currentIndex], storedArray[randomIndex]] = [
+        storedArray[randomIndex], storedArray[currentIndex]];
+    }
+
+console.log(storedArray[0]);
+
+
+
+
 
 //let pos;
 //
