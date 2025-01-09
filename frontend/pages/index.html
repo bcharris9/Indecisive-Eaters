@@ -5,46 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Indecisive Eaters</title>
     <link rel="stylesheet" href="../styles/index.css">
+    <link rel="stylesheet" href="../styles/css/bootstrap.min.css">
   </head>
   <body>
     <header>
-      <h1>Indecisive Eaters</h1>
+      <h1 class="text-center">Indecisive Eaters</h1>
     </header>
-    <main>
-      <section>
-        <h3>Enter Parameters</h3>
+    <main class="main-container text-center">
+      <section class="fluid-container">
+        <h3 class="text-center">Enter Parameters</h3>
         <form id="user-input">
-          <div>
+          <div class="text-fields justify-content-center">
             <label for="num-restaurants">How many restaurants do you want to choose from? Between 5 and 50</label>
             <input id="num-restaurants" name="num-restaurants" class="text-input" type="number" min="5" max="50" required>
           </div>
 
-          <div>
+          <div class="text-fields justify-content-center">
             <label for="num-miles">How many miles are you willing to drive? Limit 25 miles</label>
             <input id="num-miles" name="num-miles" class="text-input" type="number" min="0" max="25" required>
           </div>
 
-          <fieldset>
-            <legend>How much are you willing to spend on a scale 1-4</legend>
+          <p>How much are you willing to spend? Select multiple</p>
+          <div class="cost-container justify-content-center">
             <div>
               <input type="checkbox" id="cost-1" name="cost-1" value="1">
-              <label for="cost-1">1</label>
+              <label for="cost-1" class="costs">$</label>
             </div>
+            
             <div>
               <input type="checkbox" id="cost-2" name="cost-2" value="2">
-              <label for="cost-2">2</label>
+              <label for="cost-2" class="costs">$$</label>
             </div>
             <div>
+              
               <input type="checkbox" id="cost-3" name="cost-3" value="3">
-              <label for="cost-3">3</label>
+              <label for="cost-3" class="costs">$$$</label>
             </div>
             <div>
               <input type="checkbox" id="cost-4" name="cost-4" value="4">
-              <label for="cost-4">4</label>
+              <label for="cost-4" class="costs">$$$$</label>
             </div>
-          </fieldset>
-
-          <button type="submit" class="find-restaurant">Find Restaurants</button>
+          </div>
+          <div class="row justify-content-center">
+            <button type="submit" class="find-restaurant">Find Restaurants</button>
+          </div>
         </form>
       </section>
     </main>
