@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="../styles/css/bootstrap.min.css">
   </head>
   <body>
+    <div class="background-1"></div>
+    <div class="background-2"></div>
     <header>
       <h1 class="text-center">Indecisive Eaters</h1>
     </header>
@@ -16,16 +18,16 @@
         <h3 class="text-center">Enter Parameters</h3>
         <form id="user-input">
           <div class="text-fields justify-content-center">
-            <label for="num-restaurants">How many restaurants do you want to choose from? Between 5 and 50</label>
+            <label for="num-restaurants">How many restaurants do you want to choose from? &#40;Between 5 and 50&#41; </label>
             <input id="num-restaurants" name="num-restaurants" class="text-input" type="number" min="5" max="50" required>
           </div>
 
           <div class="text-fields justify-content-center">
-            <label for="num-miles">How many miles are you willing to drive? Limit 25 miles</label>
+            <label for="num-miles">How many miles are you willing to drive? &#40;Limit 25 miles&#41;</label>
             <input id="num-miles" name="num-miles" class="text-input" type="number" min="0" max="25" required>
           </div>
 
-          <p>How much are you willing to spend? Select multiple</p>
+          <p class="cost-text">How much are you willing to spend? &#40;Select multiple&#41;</p>
           <div class="cost-container justify-content-center">
             <div>
               <input type="checkbox" id="cost-1" name="cost-1" value="1">
