@@ -8,7 +8,6 @@ CORS(app)  # This will enable CORS for all routes
 
 @app.route('/api/data', methods=['POST'])
 def getRestaurants():
-  print('hi')
 
   # Parameters for the API request
   params = request.get_json()
