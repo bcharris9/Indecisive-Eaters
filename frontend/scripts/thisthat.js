@@ -1,22 +1,18 @@
-var storedArray = JSON.parse(sessionStorage.getItem("restaurants"));
+var restaurantArray = JSON.parse(sessionStorage.getItem("restaurants"));
 
 //Shuffle the array so that the pictures are not displayed in the same order in the same location
-var currentIndex = storedArray.length;
-  
+var currentIndex = restaurantArray.length;
     // While there remain elements to shuffle...
     while (currentIndex != 0) {
-  
       // Pick a remaining element...
       let randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex--;
-  
       // And swap it with the current element.
-      [storedArray[currentIndex], storedArray[randomIndex]] = [
-        storedArray[randomIndex], storedArray[currentIndex]];
+      [restaurantArray[currentIndex], restaurantArray[randomIndex]] = [
+        restaurantArray[randomIndex], restaurantArray[currentIndex]];
     }
 
-// TODO use max to implement end scenario
-var max = storedArray.length;
+var endCondition = restaurantArray.length;
 
 //Set default images and index
 const thisButton = document.getElementById("This");
@@ -34,14 +30,14 @@ var thatURL = document.getElementById("that-image-link");
 var thisRestaurantName = document.getElementById("this-restaurant-name");
 var thatRestaurantName = document.getElementById("that-restaurant-name");
 
-thisImageURL.src = storedArray[thisIndex]["image_url"];
-thatImageURL.src = storedArray[thatIndex]["image_url"];
+thisImageURL.src = restaurantArray[thisIndex]["image_url"];
+thatImageURL.src = restaurantArray[thatIndex]["image_url"];
 
-thisURL.href = storedArray[thisIndex]["url"];
-thatURL.href = storedArray[thatIndex]["url"];
+thisURL.href = restaurantArray[thisIndex]["url"];
+thatURL.href = restaurantArray[thatIndex]["url"];
 
-thisRestaurantName.innerText = storedArray[thisIndex]["name"];
-thatRestaurantName.innerText = storedArray[thatIndex]["name"];
+thisRestaurantName.innerText = restaurantArray[thisIndex]["name"];
+thatRestaurantName.innerText = restaurantArray[thatIndex]["name"];
 
 //When a button is pressed the opposite picture changes
 thisButton.addEventListener("click", function() {
@@ -51,21 +47,16 @@ thisButton.addEventListener("click", function() {
     else {
         thatIndex++;
     }
-    console.log(thisIndex);
-    console.log(max);
 
-    if (thatIndex == max) {
-        //save that index data
-        //switch to display.html
-        console.log(max);
-        sessionStorage.setItem("finalRestaurant", JSON.stringify(storedArray[thisIndex]));
+    if (thatIndex == endCondition) {
+        sessionStorage.setItem("finalRestaurant", JSON.stringify(restaurantArray[thisIndex]));
         window.location.href = "display.html";
 
     }
     else {
-        thatImageURL.src = storedArray[thatIndex]["image_url"];
-        thatURL.href = storedArray[thatIndex]["url"];
-        thatRestaurantName.innerText = storedArray[thatIndex]["name"];
+        thatImageURL.src = restaurantArray[thatIndex]["image_url"];
+        thatURL.href = restaurantArray[thatIndex]["url"];
+        thatRestaurantName.innerText = restaurantArray[thatIndex]["name"];
     }
 
 });
@@ -77,20 +68,14 @@ thatButton.addEventListener("click", function() {
     else {
         thisIndex++;
     }
-    console.log(thatIndex);
-    console.log(max);
-    if (thisIndex == max) {
-        //save this index data
-        //switch to display.html
-        console.log(max);
-        sessionStorage.setItem("finalRestaurant", JSON.stringify(storedArray[thatIndex]));
+
+    if (thisIndex == endCondition) {
+        sessionStorage.setItem("finalRestaurant", JSON.stringify(restaurantArray[thatIndex]));
         window.location.href = "display.html";
-
-
     }
     else {
-        thisImageURL.src = storedArray[thisIndex]["image_url"];
-        thisURL.href = storedArray[thisIndex]["url"];
-        thisRestaurantName.innerText = storedArray[thisIndex]["name"];
+        thisImageURL.src = restaurantArray[thisIndex]["image_url"];
+        thisURL.href = restaurantArray[thisIndex]["url"];
+        thisRestaurantName.innerText = restaurantArray[thisIndex]["name"];
     }
 });

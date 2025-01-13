@@ -12,7 +12,8 @@ async function getLocation() {
           reject(error);
         }
       );
-    } else {
+    } 
+    else {
       reject('Geolocation is not supported by this browser.');
     }
   });
@@ -33,7 +34,8 @@ async function getYelpData(params) {
     return response.json();
   }
   catch (error) {
-    console.log("Error!");
+    console.error("Failed to retrieve restaurants:", error);
+    alert("Problem retrieving restaurants");
   }
 }
 
@@ -54,7 +56,8 @@ document.getElementById('user-input').addEventListener('submit', async function(
   let location;
   try {
       location = await getLocation();
-  } catch (error) {
+  } 
+  catch (error) {
       console.error("Failed to retrieve location:", error);
       alert("Unable to retrieve location. Please enable location services and try again.");
       return;
@@ -92,16 +95,14 @@ document.getElementById('user-input').addEventListener('submit', async function(
           alert("No restaurants found. Please adjust your search criteria and try again.");
           return;
       }
-      console.log(newRestaurants);
 
       // Save restaurants to sessionStorage
       sessionStorage.setItem("restaurants", JSON.stringify(newRestaurants));
-      //edit_restaurants(new_restaurants);
-      console.log(window.sessionStorage.getItem("restaurants"));
 
       // Switch pages
       window.location.href = "thisthat.html";
-  } catch (error) {
+  } 
+  catch (error) {
       console.error("Error during form submission:", error);
   }
 });
