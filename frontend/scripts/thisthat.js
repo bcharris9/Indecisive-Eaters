@@ -22,23 +22,30 @@ var max = storedArray.length;
 //Set default images and index
 const button1 = document.getElementById("This");
 const button2 = document.getElementById("That");
+
 var index1 = 0
 var index2 = 1
-var image1 = document.getElementById("this-image");
-var image2 = document.getElementById("that-image");
-var imagelink1 = document.getElementById("this-image-link");
-var imagelink2 = document.getElementById("that-image-link");
 
+var thisImage = document.getElementById("this-image");
+var thatImage = document.getElementById("that-image");
 
-image1.src = storedArray[index1]["image_url"];
-image2.src = storedArray[index2]["image_url"];
+var thisImageLink = document.getElementById("this-image-link");
+var thatImageLink = document.getElementById("that-image-link");
 
-imagelink1.href = storedArray[index1]["url"];
-imagelink2.href = storedArray[index2]["url"];
+var thisRestaurantName = document.getElementById("this-restaurant-name");
+var thatRestaurantName = document.getElementById("that-restaurant-name");
 
+thisImage.src = storedArray[index1]["image_url"];
+thatImage.src = storedArray[index2]["image_url"];
 
-image1.width = 200;
-image2.width = 200;
+thisImageLink.href = storedArray[index1]["url"];
+thatImageLink.href = storedArray[index2]["url"];
+
+thisRestaurantName.innerText = storedArray[index1]["name"];
+thatRestaurantName.innerText = storedArray[index2]["name"];
+
+thisImage.width = 200;
+thatImage.width = 200;
 
 
 //When a button is pressed the opposite picture changes
@@ -49,8 +56,10 @@ button1.addEventListener("click", function() {
     else {
         index2++;
     }
-    image2.src = storedArray[index2]["image_url"];
-    imagelink2.href = storedArray[index2]["url"];
+    thatImage.src = storedArray[index2]["image_url"];
+    thatImageLink.href = storedArray[index2]["url"];
+    thatRestaurantName.innerText = storedArray[index2]["name"];
+
 });
 
 button2.addEventListener("click", function() {
@@ -60,7 +69,8 @@ button2.addEventListener("click", function() {
     else {
         index1++;
     }
-    image1.src = storedArray[index1]["image_url"];
-    imagelink1.href = storedArray[index2]["url"];
+    thisImage.src = storedArray[index1]["image_url"];
+    thisImageLink.href = storedArray[index1]["url"];
+    thisRestaurantName.innerText = storedArray[index1]["name"];
 
 });
