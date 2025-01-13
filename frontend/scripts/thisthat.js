@@ -26,9 +26,16 @@ var index1 = 0
 var index2 = 1
 var image1 = document.getElementById("this-image");
 var image2 = document.getElementById("that-image");
+var imagelink1 = document.getElementById("this-image-link");
+var imagelink2 = document.getElementById("that-image-link");
+
 
 image1.src = storedArray[index1]["image_url"];
 image2.src = storedArray[index2]["image_url"];
+
+imagelink1.href = storedArray[index1]["url"];
+imagelink2.href = storedArray[index2]["url"];
+
 
 image1.width = 200;
 image2.width = 200;
@@ -43,6 +50,7 @@ button1.addEventListener("click", function() {
         index2++;
     }
     image2.src = storedArray[index2]["image_url"];
+    imagelink2.href = storedArray[index2]["url"];
 });
 
 button2.addEventListener("click", function() {
@@ -53,4 +61,6 @@ button2.addEventListener("click", function() {
         index1++;
     }
     image1.src = storedArray[index1]["image_url"];
+    imagelink1.href = storedArray[index2]["url"];
+
 });
