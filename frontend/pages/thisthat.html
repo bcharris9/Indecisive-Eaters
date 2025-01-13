@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Indecisive Eaters</title>
         <link rel="stylesheet" href="../styles/thisthat.css"></link>
+        <link rel="stylesheet" href="../styles/css/bootstrap.min.css">
     </head>
 
     <body>
@@ -16,8 +17,28 @@
         <p></p>
         <a id = that-image-link target = "_blank"><img id = "that-image"></a>
         <button id="That">That</button>
-
+      
+        <header>
+            <h1 class="text-center">Indecisive Eaters</h1>
+        </header>
+        <div class="background-1"></div>
+        <div class="background-2"></div>
+        
+        <div class="fluid-container this-that-container">
+            <div class="row justify-content-around card-container">
+                <div class="col-6 col-md-5 this-container text-center">
+                    <p>This Restaurant Name</p>
+                    <a id = this-image-link target = "_blank"><img id = "this-image" class="this-that-img"></a>
+                    <button id="This" class="this-that-button">This</button>
+                </div>
+                <div class="col-6 col-md-5 this-container text-center">
+                    <p>That Restaurant Name</p>
+                    <a id = that-image-link target = "_blank"><img id = "that-image" class="this-that-img"></a>
+                    <button id="That" class="this-that-button">That</button>
+                </div>
+            </div>
+        </div>
+        
         <script src="../scripts/thisthat.js" type="module"></script>
     </body>
-
 </html>
