@@ -51,9 +51,22 @@ thisButton.addEventListener("click", function() {
     else {
         thatIndex++;
     }
-    thatImageURL.src = storedArray[thatIndex]["image_url"];
-    thatURL.href = storedArray[thatIndex]["url"];
-    thatRestaurantName.innerText = storedArray[thatIndex]["name"];
+    console.log(thisIndex);
+    console.log(max);
+
+    if (thatIndex == max) {
+        //save that index data
+        //switch to display.html
+        console.log(max);
+        sessionStorage.setItem("finalRestaurant", JSON.stringify(storedArray[thisIndex]));
+        window.location.href = "display.html";
+
+    }
+    else {
+        thatImageURL.src = storedArray[thatIndex]["image_url"];
+        thatURL.href = storedArray[thatIndex]["url"];
+        thatRestaurantName.innerText = storedArray[thatIndex]["name"];
+    }
 
 });
 
@@ -64,8 +77,20 @@ thatButton.addEventListener("click", function() {
     else {
         thisIndex++;
     }
-    thisImageURL.src = storedArray[thisIndex]["image_url"];
-    thisURL.href = storedArray[thisIndex]["url"];
-    thisRestaurantName.innerText = storedArray[thisIndex]["name"];
+    console.log(thatIndex);
+    console.log(max);
+    if (thisIndex == max) {
+        //save this index data
+        //switch to display.html
+        console.log(max);
+        sessionStorage.setItem("finalRestaurant", JSON.stringify(storedArray[thatIndex]));
+        window.location.href = "display.html";
 
+
+    }
+    else {
+        thisImageURL.src = storedArray[thisIndex]["image_url"];
+        thisURL.href = storedArray[thisIndex]["url"];
+        thisRestaurantName.innerText = storedArray[thisIndex]["name"];
+    }
 });

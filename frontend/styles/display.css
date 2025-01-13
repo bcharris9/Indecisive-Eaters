@@ -1,0 +1,80 @@
+header {
+    position:fixed;
+    top:0px;
+    right:0px;
+    left:0px;
+    background-color:white;
+  
+    height:80px;
+    min-width:1000px;
+  }
+
+  h1 {
+    line-height:80px !important;
+    color:red !important;
+    font-weight:700 !important;
+  }
+  
+  .background-1 {
+    position:fixed;
+    top:0px;
+    bottom:0px;
+    left:0px;
+    right:0px;
+    z-index:-2;
+  
+    --s: 56px; /* control the size*/
+    --c1: #ff0000;
+    --c2: #eecece;
+    --c3: #f5f9fa;
+    
+    --g1: conic-gradient(at calc(250%/3) calc(50%/3),var(--c2) 60deg,#0000 0 300deg,var(--c1) 0);
+    --g2: conic-gradient(at calc(50%/3) 50%,#0000 75%,var(--c1) 0);
+    --g3: conic-gradient(at calc(100%/3) 50%,#0000 75%,var(--c2) 0);
+    --g4: conic-gradient(from 59deg at calc(200%/3) calc(249%/9),var(--c3) 61deg,#0000 62deg);
+    --g5: conic-gradient(from 60deg at 50% calc(250%/3),#f1f1f1 /*4th color*/ 60deg,var(--c1) 0 120deg,#0000 0);
+    --_p: calc(9*tan(30deg)*var(--s));
+    background:
+      var(--g1) calc(-1*var(--s)) 0,var(--g1) calc(2*var(--s)) var(--_p),
+      var(--g2),var(--g2) calc(3*var(--s)) var(--_p),
+      var(--g3),var(--g3) calc(3*var(--s)) var(--_p),
+      var(--g4),var(--g4) calc(3*var(--s)) var(--_p),
+      var(--g5) calc(3*var(--s)) 0,var(--g5) 0 var(--_p) var(--c3);
+    background-size: calc(6*var(--s)) calc(2*var(--_p));
+  }
+  
+  .background-2 {
+    position:fixed;
+    top:0px;
+    bottom:0px;
+    left:0px;
+    right:0px;
+    z-index:-1;
+  
+    background-color:rgba(128, 128, 128, 0.6);
+  }
+  
+  .this-that-img {
+    height:250px;
+    width:250px;
+    object-fit:cover;
+  }
+  
+  .this-that-container {
+    margin-top: 80px;
+  }
+  
+  .card-container {
+    height:100%;
+  }
+  
+  .this-container {
+    background-color:white;
+    width:600px;
+    height:400px;
+    border-radius:25px;
+  
+    transform: translateY(75%);
+    margin-top:-200px !important;
+  }
+  
