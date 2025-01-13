@@ -5,4 +5,3 @@ document.getElementById("final-restaurant-name").innerText = finalRestaurant["na
 document.getElementById("final-image-link").href = finalRestaurant["url"];
 document.getElementById("final-image").src = finalRestaurant["image_url"];
 
-console.log(finalRestaurant);
