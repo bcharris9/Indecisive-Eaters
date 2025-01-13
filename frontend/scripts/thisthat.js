@@ -1,4 +1,3 @@
-//import { restaurants, edit_restaurants, save_restaurants } from "./utils.js";
 var storedArray = JSON.parse(sessionStorage.getItem("restaurants"));
 
 //Shuffle the array so that the pictures are not displayed in the same order in the same location
@@ -20,57 +19,53 @@ var currentIndex = storedArray.length;
 var max = storedArray.length;
 
 //Set default images and index
-const button1 = document.getElementById("This");
-const button2 = document.getElementById("That");
+const thisButton = document.getElementById("This");
+const thatButton = document.getElementById("That");
 
-var index1 = 0
-var index2 = 1
+var thisIndex = 0;
+var thatIndex = 1;
 
-var thisImage = document.getElementById("this-image");
-var thatImage = document.getElementById("that-image");
+var thisImageURL = document.getElementById("this-image");
+var thatImageURL = document.getElementById("that-image");
 
-var thisImageLink = document.getElementById("this-image-link");
-var thatImageLink = document.getElementById("that-image-link");
+var thisURL = document.getElementById("this-image-link");
+var thatURL = document.getElementById("that-image-link");
 
 var thisRestaurantName = document.getElementById("this-restaurant-name");
 var thatRestaurantName = document.getElementById("that-restaurant-name");
 
-thisImage.src = storedArray[index1]["image_url"];
-thatImage.src = storedArray[index2]["image_url"];
+thisImageURL.src = storedArray[thisIndex]["image_url"];
+thatImageURL.src = storedArray[thatIndex]["image_url"];
 
-thisImageLink.href = storedArray[index1]["url"];
-thatImageLink.href = storedArray[index2]["url"];
+thisURL.href = storedArray[thisIndex]["url"];
+thatURL.href = storedArray[thatIndex]["url"];
 
-thisRestaurantName.innerText = storedArray[index1]["name"];
-thatRestaurantName.innerText = storedArray[index2]["name"];
-
-thisImage.width = 200;
-thatImage.width = 200;
-
+thisRestaurantName.innerText = storedArray[thisIndex]["name"];
+thatRestaurantName.innerText = storedArray[thatIndex]["name"];
 
 //When a button is pressed the opposite picture changes
-button1.addEventListener("click", function() {
-    if (index2 < index1) {
-        index2 = index1 + 1;
+thisButton.addEventListener("click", function() {
+    if (thatIndex < thisIndex) {
+        thatIndex = thisIndex + 1;
     }
     else {
-        index2++;
+        thatIndex++;
     }
-    thatImage.src = storedArray[index2]["image_url"];
-    thatImageLink.href = storedArray[index2]["url"];
-    thatRestaurantName.innerText = storedArray[index2]["name"];
+    thatImageURL.src = storedArray[thatIndex]["image_url"];
+    thatURL.href = storedArray[thatIndex]["url"];
+    thatRestaurantName.innerText = storedArray[thatIndex]["name"];
 
 });
 
-button2.addEventListener("click", function() {
-    if (index1 < index2) {
-        index1 = index2 + 1;
+thatButton.addEventListener("click", function() {
+    if (thisIndex < thatIndex) {
+        thisIndex = thatIndex + 1;
     }
     else {
-        index1++;
+        thisIndex++;
     }
-    thisImage.src = storedArray[index1]["image_url"];
-    thisImageLink.href = storedArray[index1]["url"];
-    thisRestaurantName.innerText = storedArray[index1]["name"];
+    thisImageURL.src = storedArray[thisIndex]["image_url"];
+    thisURL.href = storedArray[thisIndex]["url"];
+    thisRestaurantName.innerText = storedArray[thisIndex]["name"];
 
 });

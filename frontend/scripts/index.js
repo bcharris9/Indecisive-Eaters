@@ -1,5 +1,3 @@
-import { edit_restaurants } from "./utils.js";
-
 //function to retrieve user location data from browser
 async function getLocation() {
   return new Promise((resolve, reject) => {
@@ -69,15 +67,18 @@ document.getElementById('user-input').addEventListener('submit', async function(
       }
   }
 
-  const METERS_IN_MILE = 1609;
-  let radius = numMiles * METERS_IN_MILE;
+  const MILES_TO_METERS = 1609;
+  let radius = numMiles * MILES_TO_METERS;
   if (radius > 40000) {
     radius = 40000;
   }
   const params = {
       term: 'restaurants',
-      latitude: 32.863182, //location.latitude,
-      longitude: -96.927477, //location.longitude,
+      latitude: 32.863182, //DELETE AND REPLACE: HARD CODED TO LAS COLINAS
+      longitude: -96.927477, //DELETE AND REPLACE: HARD CODED TO LAS COLINAS
+      //UNCOMMENT THESE LINES
+      //latitude: location.latitude,
+      //longitude: location.longitude,
       radius: radius,
       limit: numRestaurants,
       open_now: true,
@@ -85,18 +86,16 @@ document.getElementById('user-input').addEventListener('submit', async function(
   };
 
   try {
-      const new_restaurants = await getYelpData(params);
-      
-      //console.log(new_restaurants);
-      
-      if (!new_restaurants || new_restaurants.length === 0) {
+      const newRestaurants = await getYelpData(params);
+            
+      if (!newRestaurants || newRestaurants.length === 0) {
           alert("No restaurants found. Please adjust your search criteria and try again.");
           return;
       }
-      console.log(new_restaurants);
+      console.log(newRestaurants);
 
       // Save restaurants to sessionStorage
-      sessionStorage.setItem("restaurants", JSON.stringify(new_restaurants));
+      sessionStorage.setItem("restaurants", JSON.stringify(newRestaurants));
       //edit_restaurants(new_restaurants);
       console.log(window.sessionStorage.getItem("restaurants"));
 
