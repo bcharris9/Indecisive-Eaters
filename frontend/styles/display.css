@@ -1,3 +1,7 @@
+body {
+  overflow: hidden;
+}
+
 header {
     position:fixed;
     top:0px;
@@ -55,8 +59,8 @@ header {
   }
   
   .this-that-img {
-    height:250px;
-    width:250px;
+    height:350px;
+    width:350px;
     object-fit:cover;
   }
   
@@ -65,16 +69,17 @@ header {
   }
   
   .card-container {
-    height:100%;
+    height:100vh;
   }
   
   .this-container {
     background-color:white;
-    width:600px;
-    height:400px;
+    width: 600px !important;
+    height: 500px !important;
     border-radius:25px;
-  
-    transform: translateY(75%);
-    margin-top:-200px !important;
   }
   
+  #final-restaurant-name {
+    margin-top: 15px !important;
+    margin-bottom: 20px !important;
+  }
